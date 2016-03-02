@@ -1,0 +1,44 @@
+﻿<h4 class="text-info">
+    Welcome to the Robins Car Sales Store.<br /><br />
+    Please browse through our latest cars available for sale. If you have any queries please contact us on 01782 523711.
+    All our cars have ben services and are VOSA approved.
+</h4>
+
+
+
+<table class="table table-bordered">
+    <tr class="well">
+        <td class="tdLeft" style="background-color: cornflowerblue;">
+            <h4>
+                 Search: <input ng-model="search">
+            </h4>
+        </td>
+        <td class="tdRight" colspan="4" style="background-color: cornflowerblue;">
+            <a href="default.htm#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1" style="color: aliceblue;">
+                <i class="icon-shopping-cart" />
+                <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
+            </a>
+        </td>
+    </tr>
+    <tr ng-repeat="product in store.products | orderBy:'name' | filter:search" >
+        <td class="tdCenter"><img ng-src="img/products/{{product.sku}}.jpg" alt="{{product.name}}" /></td>
+        <td>
+            <a href="#/products/{{product.sku}}"><b>{{product.name}}</b></a><br />
+            {{product.description}}
+        </td>
+        <td class="tdRight">
+            {{product.price | currency}}
+        </td>
+        <td class="tdCenter"  style="width: 120px;">
+            <a href="" ng-click="cart.addItem(product.sku, product.name, product.price, 1)" class="btn btn-primary">Buy Now!</a>
+        </td>
+    </tr>
+    <tr class="well">
+        <td class="tdRight" colspan="4" style="background-color: cornflowerblue;">
+            <a href="default.htm#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1" style="color: aliceblue;">
+                <i class="icon-shopping-cart" />
+                <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
+            </a>
+        </td>
+    </tr>
+</table>
